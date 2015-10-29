@@ -36,15 +36,19 @@ class VisorDefaultCommand extends Command {
         $this->setName("visor:find")
             ->setDescription("Retrieves Visor data for passed identifier")
             ->addArgument('id',InputArgument::REQUIRED,'What is the identifier to look up?')
-            ->addOption('track',null,InputOption::VALUE_NONE,'If set, accounts will be tracked against existing to remove missing ones')
-            ->addOption('type',null,InputOption::VALUE_REQUIRED,'What is the system type (used in tracking)?',false)
+            ->addOption('proxy',null,InputOption::VALUE_REQUIRED,'What is proxy emplid?',false)
             ->setHelp("Usage: <info>php console.php visor:find <env></info>");
         // Access configuration values from default location (/usr/local/etc/idm_config)
         $this->config = new UsfConfig();
     }
     protected function execute(InputInterface $input, OutputInterface $output) {
         $id = $input->getArgument('id');
-        $usfVisorAPI = new \USF\IdM\USFVisorAPI($this->config->visorConfig);        
-        $output->writeln($usfVisorAPI->getVisor($id)->encode());
+        if($input->getOption('proxy')) {
+            $usfVisorAPI = new \USF\IdM\USFVisorAPI($this->config->visorConfig,$input->getOption('proxy'));        
+            $output->writeln($usfVisorAPI->getVisor($id)->encode());
+        } else {
+            $usfVisorAPI = new \USF\IdM\USFVisorAPI($this->config->visorConfig);        
+            $output->writeln($usfVisorAPI->getVisor($id)->encode());
+        }
     }
 }
