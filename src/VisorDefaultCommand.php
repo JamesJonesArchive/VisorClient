@@ -37,12 +37,13 @@ class VisorDefaultCommand extends Command {
             ->setDescription("Retrieves Visor data for passed identifier")
             ->addArgument('id',InputArgument::REQUIRED,'What is the identifier to look up?')
             ->addOption('proxy',null,InputOption::VALUE_REQUIRED,'What is proxy emplid?',false)
+            ->addOption('config',null,InputOption::VALUE_REQUIRED,'What is config folder?',false)
             ->setHelp("Usage: <info>php console.php visor:find <env></info>");
-        // Access configuration values from default location (/usr/local/etc/idm_config)
-        $this->config = new UsfConfig();
     }
     protected function execute(InputInterface $input, OutputInterface $output) {
         $id = $input->getArgument('id');
+        // Access configuration values from default location (/usr/local/etc/idm_config)
+        $this->config = ($input->getOption('config'))?new UsfConfig($input->getOption('config')):new UsfConfig();
         if($input->getOption('proxy')) {
             $usfVisorAPI = new \USF\IdM\USFVisorAPI($this->config->visorConfig,$input->getOption('proxy'));        
             $output->writeln($usfVisorAPI->getVisor($id)->encode());
