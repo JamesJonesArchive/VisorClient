@@ -44,11 +44,10 @@ class VisorDefaultCommand extends Command {
         $id = $input->getArgument('id');
         // Access configuration values from default location (/usr/local/etc/idm_config)
         $this->config = ($input->getOption('config'))?new UsfConfig($input->getOption('config')):new UsfConfig();
+        $usfVisorAPI = new \USF\IdM\USFVisorAPI($this->config->visorConfig);        
         if($input->getOption('proxy')) {
-            $usfVisorAPI = new \USF\IdM\USFVisorAPI($this->config->visorConfig,$input->getOption('proxy'));        
-            $output->writeln($usfVisorAPI->getVisor($id)->encode());
+            $output->writeln($usfVisorAPI->getVisor($id,$input->getOption('proxy'))->encode());
         } else {
-            $usfVisorAPI = new \USF\IdM\USFVisorAPI($this->config->visorConfig);        
             $output->writeln($usfVisorAPI->getVisor($id)->encode());
         }
     }
