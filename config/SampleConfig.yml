@@ -1,0 +1,6 @@
+## VisorClient Sample Configuration.
+visorConfig:
+  username: visoruser
+  password: visorpassword
+  casurl: https://cas.someorg.org
+  url: https://someorg.org/cas/employee/
