@@ -18,9 +18,10 @@
         }
     ],
     "require": {
-        "usf-it/usf-visor-client-api": "dev-master",
+        "usf-it/usf-idm-common": "0.5.0",
+        "usf-it/usf-visor-client-api": "1.0.3",
         "symfony/console": "v2.7.6",
-        "kherge/box": "2.5.3"
+        "kherge/box": "~2.5"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable",
