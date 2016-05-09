@@ -70,12 +70,7 @@ module.exports = function (grunt) {
                         '"php-xml"',
                         '"php-mbstring"',
                         '"php-xml"',
-                        '"php-cli"',
-                        '"php-pecl-mongo"',
-                        '"mongo-tools"',
-                        '"mongodb"',
-                        '"mongodb-server"',
-                        '"libmongodb"'
+                        '"php-cli"'
                     ].join(' -d '),
                     '--after-install app/setupconfig.sh -p deploy ./bin/visorclient.phar=/usr/local/bin/visorclient'
                 ].join(' ')
