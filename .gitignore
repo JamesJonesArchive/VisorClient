@@ -11,3 +11,4 @@ composer.lock
 /nbproject/private/
 
 /bin/
+/deploy/

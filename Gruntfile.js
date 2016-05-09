@@ -29,26 +29,7 @@ module.exports = function (grunt) {
                 flags: ['ignore-platform-reqs']
             }
         },
-        copy: {
-            pharrename: {
-                files: [{
-                        expand: true,
-                        dot: true,
-                        cwd: 'bin',
-                        dest: 'bin/',
-                        src: [
-                            'visorclient.phar'
-                        ],
-                        rename: function (dest, src) {
-                            return dest + src.replace('.phar', '');
-                        }
-                    }]
-            }
-        },
         clean: {
-            pharrename: {
-                src: ['bin/visorclient.phar']
-            },
             deploy: {
                 src: ['deploy/*.rpm', 'deploy/*.deb']
             }
@@ -59,7 +40,7 @@ module.exports = function (grunt) {
             },
             pharbits: {
                 // Target-specific file/dir lists and/or options go here.
-                src: ['bin/visorclient']
+                src: ['bin/visorclient.phar']
             }
         },
         shell: {
@@ -77,7 +58,7 @@ module.exports = function (grunt) {
             fpmrpm: {
                 "command": [
                     [
-                        '/usr/local/bin/fpm -s dir -t rpm -n \'<%= appEnv.name %>\' -v <%= appEnv.version %> --prefix /usr/local',
+                        '/usr/local/bin/fpm -s dir -t rpm -n \'<%= appEnv.name %>\' -v <%= appEnv.version %> ',
                         '"php"',
                         '"php-common"',
                         '"php-mysqlnd"',
@@ -96,7 +77,7 @@ module.exports = function (grunt) {
                         '"mongodb-server"',
                         '"libmongodb"'
                     ].join(' -d '),
-                    '--after-install app/setupconfig.sh -p deploy bin'
+                    '--after-install app/setupconfig.sh -p deploy ./bin/visorclient.phar=/usr/local/bin/visorclient'
                 ].join(' ')
             }
         }
@@ -108,8 +89,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('buildrpm', [
-        "copy:pharrename",
-        "clean:pharrename",
+        // "copy:pharrename",
+        // "clean:pharrename",
         "chmod:pharbits",
         "clean:deploy",
         "shell:mkdeploy",
