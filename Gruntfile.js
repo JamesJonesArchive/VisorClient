@@ -54,6 +54,20 @@ module.exports = function (grunt) {
             },
             mkdeploy: {
                 command: 'mkdir -p deploy'
+            },            
+            for_centos7: {
+              "command": [
+                [
+                  '/usr/local/bin/fpm -s dir -t rpm -n \'<%= appEnv.name %>\' -v <%= appEnv.version %> '
+                ].join(' -d '),
+                '--description "<%= appEnv.description %>"',
+                '--url "<%= appEnv.homepage %>"',
+                '--license "<%= appEnv.license %>"',
+                '--vendor "University of South Florida"',
+                '--iteration "<%= appEnv.release %>"',
+                '--config-files /usr/local/etc/idm_config/VisorClient.yml',
+                '-p public ./bin/visorclient.phar=/usr/local/bin/visorclient ./config/VisorClient.yml=/usr/local/etc/idm_config/VisorClient.yml'
+              ].join(' ')
             },
             fpmrpm: {
                 "command": [

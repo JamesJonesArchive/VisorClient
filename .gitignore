@@ -12,3 +12,4 @@ composer.lock
 
 /bin/
 /deploy/
+/node_modules/

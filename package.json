@@ -1,7 +1,10 @@
 {
     "name": "visor-client",
     "version": "1.0.0",
+    "release": "1",
     "description": "The VisorClient is a command-line interface for visor service",
+    "license" : "Apache-2.0",
+    "homepage": "https://github.com/USF-IT/VisorClient",
     "dependencies": {},
     "private": true,
     "devDependencies": {
@@ -20,8 +23,6 @@
         "node": ">=0.8.15"
     },
     "scripts": {
-        "postinstall": "node_modules/grunt-cli/bin/grunt build",
-        "preinstall": "npm cache clean && npm prune"
     }
 }
 
