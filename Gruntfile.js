@@ -15,7 +15,11 @@ module.exports = function (grunt) {
     // Configurable paths for the application
     var appConfig = {
         name: require('./package.json').name,
-        version: require('./package.json').version
+        version: require('./package.json').version,
+        release: require('./package.json').release,
+        description: require('./package.json').description,
+        homepage: require('./package.json').homepage,
+        license: require('./package.json').license
     };
 
     // Define the configuration for all the tasks
