@@ -66,7 +66,7 @@ module.exports = function (grunt) {
                 '--vendor "University of South Florida"',
                 '--iteration "<%= appEnv.release %>"',
                 '--config-files /usr/local/etc/idm_config/VisorClient.yml',
-                '-p public ./bin/visorclient.phar=/usr/local/bin/visorclient ./config/VisorClient.yml=/usr/local/etc/idm_config/VisorClient.yml'
+                '-p deploy ./bin/visorclient.phar=/usr/local/bin/visorclient ./config/VisorClient.yml=/usr/local/etc/idm_config/VisorClient.yml'
               ].join(' ')
             },
             fpmrpm: {
