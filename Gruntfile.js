@@ -68,7 +68,7 @@ module.exports = function (grunt) {
                 '--url "<%= appEnv.homepage %>"',
                 '--license "<%= appEnv.license %>"',
                 '--vendor "University of South Florida"',
-                '--iteration "<%= appEnv.release %>"',
+                '--iteration "<%= appEnv.release %>".el7',
                 '--config-files /usr/local/etc/idm_config/VisorClient.yml',
                 '-p deploy ./bin/visorclient.phar=/usr/local/bin/visorclient ./config/VisorClient.yml=/usr/local/etc/idm_config/VisorClient.yml'
               ].join(' ')
